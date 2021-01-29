@@ -1,0 +1,23 @@
+<?php
+
+
+/**
+ * Implements hook_form_FORM_ID_alter
+ */
+ 
+function MODULENAME_form_FORMID_alter(&$form, &$form_state) {
+  $markup_mail = new FormattableMarkup( '<a href="/user/login">@text</a>', ['@text' => t('Click here to login'),] );
+  $markup_form_title = new FormattableMarkup( '<h1 class="mb-200">@text</h1>', ['@text' => t('Forgotten Password'),] );
+
+  $form['#attributes']['class']['0'] = "container-fluid";
+  $form['mail']['#markup'] = $markup_mail;
+  $form['actions']['submit']['#value'] = t('Reset Password');
+  $form['actions']['submit']['#attributes']['class'][] = "mt-100 btn";
+  $form['name']['#title'] = NULL;
+  $form['title']['#value'] = t('Forgotten Password');
+  $form['form_title'] = [
+    '#type' => 'markup',
+    '#markup' => $markup_form_title,
+    '#weight' => -2,
+  ];
+}
