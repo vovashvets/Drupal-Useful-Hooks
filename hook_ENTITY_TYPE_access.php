@@ -34,3 +34,19 @@ function MODULE_user_access(UserInterface $entity, $op, AccountInterface $accoun
   // No opinion.
   return AccessResult::neutral();
 }
+
+/**
+ * Implements hook_ENTITY_TYPE_access() for entity type "node".
+ */
+function mymodule_node_access(NodeInterface $node, $op, AccountInterface $account) {
+  $type = $node->getType();
+  if ($type == 'foo' && $op == 'view') {
+    if(strstr($account->getEmail(), '@example.com')) {
+        return AccessResult::allowed();
+    }
+    else {
+      return  AccessResult::forbidden();
+    }
+  }
+  return AccessResult::neutral();
+}
