@@ -1,0 +1,3 @@
+siege -f urls.txt -c 1 -r 675 -b --log >spl-siege-log-1-user.csv
+siege -f urls.txt -c 10 -r 675 -b --log >spl-siege-log-1-user.csv
+siege -f urls.txt -c 25 -r 675 -b --log >spl-siege-log-1-user.csv
